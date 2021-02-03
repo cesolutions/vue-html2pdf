@@ -249,7 +249,8 @@ export default {
 			}
 
 			if (this.exportAsBlob) {
-				pdfBlobUrl = await html2PdfSetup.output('bloburl')
+				this.pdfFile = await html2PdfSetup.output('bloburl')
+				pdfBlobUrl = this.pdfFile
 			}
 
 			if (pdfBlobUrl) {
