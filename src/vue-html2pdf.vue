@@ -90,7 +90,12 @@ export default {
 		manualPagination: {
 			type: Boolean,
 			default: false
-		}
+		},
+
+		exportAsBlob: {
+			type: Boolean,
+			default: true
+		},
 	},
 
 	data () {
@@ -241,6 +246,10 @@ export default {
 
 			if (this.enableDownload) {
 				pdfBlobUrl = await html2PdfSetup.save().output('bloburl')
+			}
+
+			if (this.exportAsBlob) {
+				pdfBlobUrl = await html2PdfSetup.output('bloburl')
 			}
 
 			if (pdfBlobUrl) {
