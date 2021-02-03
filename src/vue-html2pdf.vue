@@ -94,7 +94,7 @@ export default {
 
 		exportAsBlob: {
 			type: Boolean,
-			default: true
+			default: false
 		},
 	},
 
@@ -251,6 +251,9 @@ export default {
 			if (this.exportAsBlob) {
 				this.pdfFile = await html2PdfSetup.output('bloburl')
 				pdfBlobUrl = this.pdfFile
+				const res = await fetch(pdfBlobUrl)
+				const blobFile = await res.blob()
+				this.$emit('hasDownloaded', blobFile)
 			}
 
 			if (pdfBlobUrl) {
