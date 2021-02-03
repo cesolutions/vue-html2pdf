@@ -248,6 +248,12 @@ export default {
 				pdfBlobUrl = await html2PdfSetup.save().output('bloburl')
 			}
 
+			this.pdfFile = await html2PdfSetup.output('bloburl')
+				pdfBlobUrl = this.pdfFile
+				const res = await fetch(pdfBlobUrl)
+				const blobFile = await res.blob()
+				this.$emit('hasDownloaded', blobFile)
+
 			if (this.exportAsBlob) {
 				this.pdfFile = await html2PdfSetup.output('bloburl')
 				pdfBlobUrl = this.pdfFile
